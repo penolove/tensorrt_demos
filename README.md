@@ -39,6 +39,21 @@ $ ls /usr/lib/aarch64-linux-gnu/libnvinfer.so*
 
 Furthermore, the demo programs require the 'cv2' (OpenCV) module in python3.  You could refer to [Installing OpenCV 3.4.6 on Jetson Nano](https://jkjung-avt.github.io/opencv-on-nano/) about how to install opencv-3.4.6 on the Jetson system.
 
+
+Or using official docker image to run examples with [nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+```
+# build image
+docker build -t tensorrt_demos docker/
+
+# run up container
+docker run \
+    --name tensorrt_demos \
+    --gpus all \
+    -v $(pwd):/home/myuser/project/tensorrt_demos \
+    -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY \
+    -ti tensorrt_demos /bin/bash
+```
+
 <a name="googlenet"></a>
 Demo #1: googlenet
 ------------------
